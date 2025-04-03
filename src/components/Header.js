@@ -11,7 +11,9 @@ const Header = () => {
   return (
     <div className={`header-container ${isMypage ? "solid" : "transparent"}`}>
       <div className="header-section">
-        <div className="header-logo">LIKELION</div>
+      <div className="header-logo">
+        <Link to="/" className="logo-link">LIKELION</Link>
+      </div>
         <div className="header-menu">
           <div className="menu-link">
             <Link
