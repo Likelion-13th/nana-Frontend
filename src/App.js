@@ -7,11 +7,13 @@ import Perfume from './pages/ProductPage/Perfume';
 import New from './pages/ProductPage/New';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import ToolBar from './components/ToolBar';
 
 function App() {
   return (
     <Router>
       <Header/>
+      <ToolBar/>
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/mypage" element={<MyPage/>} />

@@ -5,16 +5,18 @@ import "slick-carousel/slick/slick-theme.css";
 import "./../../styles/CustomBanner.css";
 
 
-
 const Banner = () => {
     const settings = {
         dots: true,
         infinite: true,
-        speed: 400,
-        slidsToShow: 1,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 2000,
+        autoplaySpeed: 3000,
         arrows: true,
+        prevArrow: <CustomArrow direction="prev" />, // 커스텀 이전 화살표
+        nextArrow: <CustomArrow direction="next" />, // 커스텀 다음 화살표
     };
 
     const images = [
@@ -39,5 +41,34 @@ const Banner = () => {
     );
 
 };
+
+const CustomArrow = ({ onClick, direction }) => {
+    const isPrev = direction === "prev";
+    const arrowStyle = {
+      width: "fit-content",
+      height: "fit-content",
+      position: "absolute",
+      top: "50%",
+      transform: isPrev ? "translateY(-50%)" : "translateY(-50%) rotate(180deg)",
+      zIndex: 1,
+      [isPrev ? "left" : "right"]: "25px",
+    };
+  
+    return (
+      <button
+        type="button"
+        data-role="none"
+        className={`slick-arrow slick-${direction}`}
+        onClick={onClick}
+        style={arrowStyle}
+      >
+        <img
+          src={`${process.env.PUBLIC_URL}/icon/icon_banner_arrow.svg`}
+          alt={isPrev ? "Previous" : "Next"}
+          style={{ width: "144px", height: "144px" }}
+        />
+      </button>
+    );
+  };
 
 export default Banner;
