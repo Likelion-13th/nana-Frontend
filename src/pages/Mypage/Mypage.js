@@ -1,12 +1,18 @@
-import React from 'react';
+  import React from "react";
+  import "../../styles/Mypage.css";
+  import Profile from "./Profile";
+  import Status from "./Status";
+  import Address from "./Address";
+  import History from "./History";
 
-const MyPage = () => {
-    return(
-        <div>
-            <h1>마이페이지</h1>
-            <p>마이페이지</p>
-        </div>
-    )
-}
-
-export default MyPage;
+  const Mypage = () => {
+    return (
+      <div className="page-container">
+        <Profile />
+        <Status />
+        <Address />
+        <History />
+      </div>
+    );
+  };
+  export default Mypage;
