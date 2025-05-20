@@ -1,0 +1,101 @@
+@font-face {
+  font-family: "NanumMyeongjo-Regular";
+  src: url("../../public/font/NanumMyeongjo-Regular.ttf") format("truetype");
+}
+
+/* ProductCard Component */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  position: relative; /* 기준점 잡기 */
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover; /* 비율 깨짐 방지 */
+}
+
+.product-name {
+  font-family: "NanumMyeongjo-Regular";
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 16px;
+  color: #3a3a3a;
+}
+
+.product-brand {
+  font-family: "NanumMyeongjo-Regular";
+  font-size: 12px;
+  font-weight: bold;
+  color: #898989;
+  margin-top: 8px;
+}
+
+.product-price {
+  font-family: "NanumMyeongjo-Regular";
+  font-size: 16px;
+  font-weight: bold;
+  color: #3a3a3a;
+  margin-top: 8px;
+}
+
+.new-badge {
+  /* 위에서 10 오른쪽에서 10 떨어지게 */
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #2ec1ac;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-family: "KaiseiDecol-Regular";
+  padding: 10px 5px 10px 5px;
+  border-radius: 50px;
+  text-align: center;
+}
+
+/* ProductPage Base */
+.product-container {
+  width: 100%;
+  padding: 80px;
+  box-sizing: border-box; /* padding, border까지 포함된 크기로 계산하도록 */
+}
+
+.product-grid {
+  /* 칸 사이 간격 84px로 균등하게 5칸 가로로 만들기 */
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 84px;
+  width: 100%;
+  box-sizing: border-box; /* padding, border까지 포함된 크기로 계산하도록 */
+}
+
+.banner {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.banner-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  font-family: 'NanumMyeongjo', serif;
+  font-size: 48px;
+  font-weight: 400;
+
+  color: white; /* 부드러운 그림자 효과 */
+}

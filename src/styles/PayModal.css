@@ -1,0 +1,167 @@
+@font-face {
+    font-family: 'KaiseiDecol-Regular';
+    src: url("../../public/font/KaiseiDecol-Regular.ttf") format("truetype");
+}
+@font-face {
+    font-family: 'NanumMyeongjo';
+    src: url("../../public/font/NanumMyeongjo-Regular.ttf") format("truetype");
+}
+
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.container{
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 30px;
+    width: 500px;
+    position: relative;
+    z-index: 10;
+}
+
+.close-button{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    background: none;
+    cursor: pointer;
+}
+
+.title{
+    font-family: "GmarketSans-Bold";
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.section{
+    margin-bottom: 20px;
+}
+
+.section-title{
+    font-family: "GmarketSans-Bold";
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.order-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px; /* 이미지와 텍스트 사이 간격 */
+}
+
+.order-image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.order-name {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.order-brand {
+  font-size: 13px;
+  font-weight: 500;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+.order-price {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 4px;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.quantity-button {
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.quantity {
+  min-width: 16px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.user-info {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.mileageToUse-input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.total-item {
+  margin-bottom: 8px;
+}
+
+.total-value {
+  margin-bottom: 8px;
+  text-align: right;
+}
+
+.total-value.discount {
+  color: #b00020;
+}
+
+.pay-button {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #222;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  margin-top: 24px;
+  cursor: pointer;
+}

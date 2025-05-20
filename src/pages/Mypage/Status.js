@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/Mypage.css"; // 스타일 파일 그대로 사용한다면
+import "../../styles/Mypage.css"; 
 
 const Status = () => {
 
