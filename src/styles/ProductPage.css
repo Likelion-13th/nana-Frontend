@@ -114,8 +114,16 @@
   border-radius: 4px;
 }
 
+.paging button:hover {
+  background-color: #eee;
+}
+
+.paging button:active {
+  background-color: #ddd; /* 눌렀을 때 살짝 어두워짐 */
+}
+
 .paging .active {
-  background-color: #ff9900;
-  color: white;
+  background-color: #ddd;
+  color: #ddd;
   font-weight: bold;
 }

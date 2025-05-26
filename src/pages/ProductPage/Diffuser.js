@@ -12,7 +12,7 @@ const Diffuser = () => {
       brand: "브랜드 A",
       price: 18000,
       imagePath: "img/diffuser_1.png",
-      isNew: true,
+      isNew: false,
     },
     {
       id: 2,
@@ -20,7 +20,7 @@ const Diffuser = () => {
       brand: "브랜드 B",
       price: 19000,
       imagePath: "img/diffuser_2.png",
-      isNew: true,
+      isNew: false,
     },
     {
       id: 3,
@@ -28,7 +28,7 @@ const Diffuser = () => {
       brand: "브랜드 C",
       price: 20000,
       imagePath: "img/diffuser_3.png",
-      isNew: true,
+      isNew: false,
     },
     {
       id: 4,
@@ -36,7 +36,7 @@ const Diffuser = () => {
       brand: "브랜드 D",
       price: 21000,
       imagePath: "img/diffuser_4.png",
-      isNew: true,
+      isNew: false,
     },
     {
       id: 5,
@@ -44,7 +44,7 @@ const Diffuser = () => {
       brand: "브랜드 E",
       price: 29000,
       imagePath: "img/diffuser_5.png",
-      isNew: true,
+      isNew: false,
     },
     {
       id: 6,
@@ -52,7 +52,7 @@ const Diffuser = () => {
       brand: "브랜드 F",
       price: 52000,
       imagePath: "img/diffuser_6.png",
-      isNew: true,
+      isNew: false,
     },
     {
       id: 7,
@@ -60,7 +60,7 @@ const Diffuser = () => {
       brand: "브랜드 G",
       price: 29000,
       imagePath: "img/diffuser_7.png",
-      isNew: true,
+      isNew: false,
     },
     {
       id: 8,
@@ -68,7 +68,7 @@ const Diffuser = () => {
       brand: "브랜드 H",
       price: 12000,
       imagePath: "img/diffuser_8.png",
-      isNew: true,
+      isNew: false,
     },
     {
       id: 9,
@@ -76,7 +76,7 @@ const Diffuser = () => {
       brand: "브랜드 I",
       price: 22000,
       imagePath: "img/diffuser_9.png",
-      isNew: true,
+      isNew: false,
     },
     {
       id: 10,
@@ -84,7 +84,7 @@ const Diffuser = () => {
       brand: "브랜드 J",
       price: 24000,
       imagePath: "img/diffuser_10.png",
-      isNew: true,
+      isNew: false,
     },
     {
       id: 11,
@@ -92,7 +92,7 @@ const Diffuser = () => {
       brand: "브랜드 K",
       price: 25000,
       imagePath: "img/diffuser_11.png",
-      isNew: true,
+      isNew: false,
     },
     {
       id: 12,
@@ -100,7 +100,7 @@ const Diffuser = () => {
       brand: "브랜드 L",
       price: 28000,
       imagePath: "img/diffuser_12.png",
-      isNew: true,
+      isNew: false,
     },
     {
       id: 13,
@@ -108,7 +108,7 @@ const Diffuser = () => {
       brand: "브랜드 M",
       price: 28000,
       imagePath: "img/diffuser_13.png",
-      isNew: true,
+      isNew: false,
     },
     {
       id: 14,
@@ -116,7 +116,7 @@ const Diffuser = () => {
       brand: "브랜드 N",
       price: 12000,
       imagePath: "img/diffuser_14.png",
-      isNew: true,
+      isNew: false,
     },
     {
       id: 15,
@@ -124,7 +124,7 @@ const Diffuser = () => {
       brand: "브랜드 O",
       price: 32000,
       imagePath: "img/diffuser_15.png",
-      isNew: true,
+      isNew: false,
     }
   ];
 
@@ -157,7 +157,7 @@ const Diffuser = () => {
       <Banner title="Diffuser" imagePath="banner_diffuser.jpg" />
       <div className="product-container">
         <div className="product-grid">
-          {currentProducts.map((product) => (
+          {currentProducts.map((product, index) => (
             <ProductCard
               key={product.id}
               product={product}
