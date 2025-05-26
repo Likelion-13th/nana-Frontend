@@ -99,3 +99,23 @@
 
   color: white; /* 부드러운 그림자 효과 */
 }
+.paging {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.paging button {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.paging .active {
+  background-color: #ff9900;
+  color: white;
+  font-weight: bold;
+}

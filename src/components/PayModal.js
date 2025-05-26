@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/PayModal.css";
 
 const PayModal = ({ product, onClose }) => {
-  //상태 값이 바뀌면 자동으로 컴포넌트가 다시 렌더링 되도록
+  // 상태 값이 바뀌면 자동으로 컴포넌트가 다시 렌더링 되도록
   
 	// 주문할 상품 개수 (기본값 1개)
   const [quantity, setQuantity] = useState(1);

@@ -45,7 +45,88 @@ const New = () => {
       price: 21000,
       imagePath: "img/perfume_3.png",
       isNew: true,
+    },
+    {
+      id: 6,
+      name: "신상 향수 F",
+      brand: "브랜드F",
+      price: 26000,
+      imagePath: "img/perfume_4.png",
+      isNew: true,
+    },
+    {
+      id: 7,
+      name: "신상 향수 G",
+      brand: "브랜드G",
+      price: 11000,
+      imagePath: "img/diffuser_5.png",
+      isNew: true,
+    },
+    {
+      id: 8,
+      name: "신상 향수 H",
+      brand: "브랜드H",
+      price: 41000,
+      imagePath: "img/diffuser_6.png",
+      isNew: true,
+    },
+    {
+      id: 9,
+      name: "신상 향수 I",
+      brand: "브랜드i",
+      price: 22000,
+      imagePath: "img/perfume_6.png",
+      isNew: true,
+    },
+    {
+      id: 10,
+      name: "신상 향수 J",
+      brand: "브랜드J",
+      price: 11000,
+      imagePath: "img/perfume_7.png",
+      isNew: true,
+    },
+    {
+      id: 11,
+      name: "신상 향수 K",
+      brand: "브랜드K",
+      price: 29000,
+      imagePath: "img/diffuser_7.png",
+      isNew: true,
+    },
+    {
+      id: 12,
+      name: "신상 향수 L",
+      brand: "브랜드L",
+      price: 21000,
+      imagePath: "img/perfume_5.png",
+      isNew: true,
+    },
+    {
+      id: 13,
+      name: "신상 향수 M",
+      brand: "브랜드M",
+      price: 28000,
+      imagePath: "img/diffuser_8.png",
+      isNew: true,
+    },
+    {
+      id: 14,
+      name: "신상 향수 N",
+      brand: "브랜드N",
+      price: 22000,
+      imagePath: "img/diffuser_9.png",
+      isNew: true,
+    },
+    {
+      id: 15,
+      name: "신상 향수 O",
+      brand: "브랜드O",
+      price: 31000,
+      imagePath: "img/perfume_8.png",
+      isNew: true,
     }
+
   ];
 
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -60,13 +141,24 @@ const New = () => {
     setSelectedProduct(null);
     setIsModalOpen(false);
   };
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5; 
 
+  const totalPages = Math.ceil(products.length / itemsPerPage);
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentProducts = products.slice(startIndex, endIndex);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
   return (
     <div>
       <Banner title="New" imagePath="banner_main.jpg" />
       <div className="product-container">
         <div className="product-grid">
-          {products.map((product) => (
+          {currentProducts.map((product) => (
             <ProductCard
               key={product.id}
               product={product}
@@ -74,6 +166,31 @@ const New = () => {
             />
           ))}
         </div>
+
+        <div className="paging">
+          {currentPage > 1 && (
+            <button onClick={() => handlePageChange(currentPage - 1)}>
+              Prev
+            </button>
+          )}
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+            (pageNumber) => (
+              <button
+                key={pageNumber}
+                onClick={() => handlePageChange(pageNumber)}
+              >
+                {pageNumber}
+                
+              </button>
+            )
+          )}
+          {currentPage < totalPages && (
+            <button onClick={() => handlePageChange(currentPage + 1)}>
+              Next
+            </button>
+          )}
+        </div>
+        
       </div>
 
       {isModalOpen && (
