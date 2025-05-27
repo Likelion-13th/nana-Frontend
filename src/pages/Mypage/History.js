@@ -29,7 +29,7 @@ const History = () => {
                   <img
                     src={`${process.env.PUBLIC_URL}/img/banner_background_2.jpg`}
                     alt="제품 이미지"
-                    className="product-image"
+                    className="history-product-image"
                   />
                   <div className="product-info">
                     <div className="product-name">엑스 베티버 오 드 퍼퓸</div>

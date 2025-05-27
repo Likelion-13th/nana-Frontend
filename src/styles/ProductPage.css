@@ -59,6 +59,9 @@
 
 /* ProductPage Base */
 .product-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   padding: 80px;
   box-sizing: border-box; /* padding, border까지 포함된 크기로 계산하도록 */
@@ -76,7 +79,7 @@
 .banner {
   position: relative;
   width: 100%;
-  height: 400px;
+  height: 100%;
   overflow: hidden;
 }
 
