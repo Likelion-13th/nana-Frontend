@@ -8,6 +8,7 @@ const ToolBar = () => {
             src={`${process.env.PUBLIC_URL}/icon/icon_login.svg`}
             alt="login"
             className="toolbar-icon"
+            onClick={handleLoginRedirect}
           ></img>
           <img
             src={`${process.env.PUBLIC_URL}/icon/icon_recent.svg`}
@@ -37,5 +38,13 @@ const MoveToTop = () => {
 const MoveToBottom = () => {
     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
 };
+
+const handleLoginRedirect = () => {
+  const redirectUrl = "https://nana-frontend.netlify.app/";
+
+  const oauthUrl = `http://sajang-dev.ap-northeast-2.elasticbeanstalk.com/oauth2/authorization/kakao?redirect_uri=${redirectUrl}`;
+
+  window.location.href = oauthUrl;
+}
 
 export default ToolBar;
