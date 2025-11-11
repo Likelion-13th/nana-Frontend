@@ -1,11 +1,17 @@
 import React from "react";
 import "../styles/ToolBar.css";
+/*import { useCookies } from "react-cookie";*/
 
-const ToolBar = () => {
+
+const ToolBar = ({isLogin, onLoginChange}) => {
     return (
         <div className="toolbar-container">
           <img
-            src={`${process.env.PUBLIC_URL}/icon/icon_login.svg`}
+            src={
+              isLogin
+                ? `${process.env.PUBLIC_URL}/icon/icon_logout.svg`
+                : `${process.env.PUBLIC_URL}/icon/icon_login.svg`
+            }
             alt="login"
             className="toolbar-icon"
             onClick={handleLoginRedirect}
@@ -40,9 +46,13 @@ const MoveToBottom = () => {
 };
 
 const handleLoginRedirect = () => {
-  const redirectUrl = "https://nana-frontend.netlify.app/";
+  const redirectUrl =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : "https://nana-frontend.netlify.app/"
 
-  const oauthUrl = `http://sajang-dev.ap-northeast-2.elasticbeanstalk.com/oauth2/authorization/kakao?redirect_uri=${redirectUrl}`;
+  const oauthUrl = "http://Sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/oauth2/start/kakao" +
+  `?redirect_uri=${encodeURIComponent(redirectUrl)}`;
 
   window.location.href = oauthUrl;
 }
