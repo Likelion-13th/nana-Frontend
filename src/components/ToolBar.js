@@ -17,34 +17,28 @@ const ToolBar = ({ isLogin, onLoginChange }) => {
   // 로그인/로그아웃 공용 클릭 핸들러
   const handleAuthClick = async () => {
     if (isLogin) {
-      // 🔐 로그아웃
       try {
         await axios.delete("/api/users/logout", {
           headers: { Authorization: `Bearer ${cookies.accessToken || ""}` },
-          withCredentials: true
+          withCredentials: true,
         });
-
-
-        // 상태/쿠키 정리
         onLoginChange(false);
         removeCookie("accessToken", { path: "/" });
-
-        // 메인으로 이동
         window.location.href = "/";
       } catch (err) {
         console.error("LOGOUT API 요청 실패", err);
         alert("로그아웃 중 오류가 발생했습니다.");
       }
     } else {
-      // 🔑 로그인 (카카오 OAuth 시작)
+      // 🔑 로그인도 프록시로 (혼합콘텐츠 방지)
       const redirectUrl =
         process.env.NODE_ENV === "development"
           ? "http://localhost:3000"
           : "https://nana-frontend.netlify.app/";
 
+      // ✅ http 절대주소 대신 /api 경유
       const oauthUrl =
-        "http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/oauth2/start/kakao" +
-        `?redirect_uri=${encodeURIComponent(redirectUrl)}`;
+        `/api/oauth2/start/kakao?redirect_uri=${encodeURIComponent(redirectUrl)}`;
 
       window.location.href = oauthUrl;
     }
