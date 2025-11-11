@@ -69,6 +69,7 @@ const ToolBar = ({ isLogin, onLoginChange }) => {
         src={`${process.env.PUBLIC_URL}/icon/icon_up.svg`}
         alt="up"
         className="toolbar-icon"
+        onClick={MoveToTop} 
       />
       <img
         src={`${process.env.PUBLIC_URL}/icon/icon_down.svg`}
