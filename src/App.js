@@ -16,10 +16,9 @@ function AppInner() {
   const [isLogin, setIsLogin] = useState(false);
   const [cookies] = useCookies(["accessToken"]);
 
-  // 쿠키 기준으로 초기 로그인 상태 동기화
+  // ✅ 새로고침/직접접속 시에도 쿠키로 로그인 상태 반영
   useEffect(() => {
-    if (cookies.accessToken) setIsLogin(true);
-    else setIsLogin(false);
+    setIsLogin(!!cookies.accessToken);
   }, [cookies.accessToken]);
 
   return (

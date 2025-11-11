@@ -15,16 +15,12 @@ const Home = ({ onLoginChange }) => {
     const accessToken = params.get("accessToken");
 
     if (accessToken) {
-      // 토큰을 쿠키로 저장
       setCookie("accessToken", accessToken, {
         path: "/",
         maxAge: 60 * 60 * 24 * 7, // 7일
       });
-
-      // 앱 전역 로그인 상태 반영
       onLoginChange(true);
-
-      // 쿼리스트링 제거
+      // ✅ 쿼리스트링 제거해서 깔끔하게
       navigate("/", { replace: true });
     }
   }, [setCookie, navigate, onLoginChange]);
