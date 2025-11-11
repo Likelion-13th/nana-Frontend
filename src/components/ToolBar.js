@@ -19,16 +19,11 @@ const ToolBar = ({ isLogin, onLoginChange }) => {
     if (isLogin) {
       // 🔐 로그아웃
       try {
-        await axios.delete(
-          "http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/users/logout",
-          {
-            headers: {
-              Authorization: `Bearer ${cookies.accessToken || ""}`,
-              accept: "*/*",
-            },
-            withCredentials: true,
-          }
-        );
+        await axios.delete("/api/users/logout", {
+          headers: { Authorization: `Bearer ${cookies.accessToken || ""}` },
+          withCredentials: true
+        });
+
 
         // 상태/쿠키 정리
         onLoginChange(false);
