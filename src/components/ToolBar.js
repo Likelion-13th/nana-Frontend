@@ -67,10 +67,10 @@ const handleloginRedirect = () => {
   const redirectUrl =
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
-      : "https://karsa-likelion.netlify.app/";
+      : "https://nana-frontend.netlify.app/";
 
   const oauthUrl =
-   "http://sajang-dev-env.eba-gchahrh4.ap-northeast-2.elasticbeanstalk.com/oauth2/start/kakao" + 
+   "Sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/oauth2/start/kakao" + 
    `?redirect_uri=${encodeURIComponent(redirectUrl)}`;
 
   window.location.href = oauthUrl;
