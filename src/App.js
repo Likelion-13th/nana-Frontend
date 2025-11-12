@@ -20,14 +20,14 @@ axios.defaults.withCredentials = true;
 axios.defaults.validateStatus = (s) => s < 500;
 
 // ★ 추가: EB 절대주소(쿠키 필요한 엔드포인트는 반드시 이 도메인으로 직접 호출)
-const EB_ORIGIN =
-  process.env.NODE_ENV === "development"
-    ? "http://localhost:8080"
-    : "http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com";
+// const EB_ORIGIN =
+//   process.env.NODE_ENV === "development"
+//     ? "http://localhost:8080"
+//     : "http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com";
 
 function AppInner() {
   const [isLogin, setIsLogin] = useState(false);
-  const [cookies, setCookie, removeCookie] = useCookies(["accessToken"]);
+  const [cookies] = useCookies(["accessToken"]);
 
   // // ★ 추가: 쿠키의 accessToken을 Axios Authorization 헤더에 자동 주입/제거
   // useEffect(() => {
