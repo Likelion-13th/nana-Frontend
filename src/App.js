@@ -97,10 +97,10 @@ function AppInner() {
   //   })();
   // }, [cookies.accessToken, setCookie]);
 
-  // // 쿠키 기반 로그인 상태 반영
-  // useEffect(() => {
-  //   setIsLogin(!!cookies.accessToken);
-  // }, [cookies.accessToken]);
+  // 쿠키 기반 로그인 상태 반영
+  useEffect(() => {
+    setIsLogin(!!cookies.accessToken);
+  }, [cookies.accessToken]);
 
   // // 선택: 401 응답 시 로그인 해제
   // useEffect(() => {
