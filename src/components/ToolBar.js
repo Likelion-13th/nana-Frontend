@@ -27,7 +27,7 @@ const handleLogout = () => {
             .delete("/users/logout", {
                 headers: {
                     accept: "/",
-                    Authorization: Bearer ${cookies.accessToken},
+                    Authorization: `Bearer ${cookies.accessToken}`,
                 },
             })
             .then(() => {
