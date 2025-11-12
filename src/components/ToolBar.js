@@ -22,26 +22,22 @@ const ToolBar = ({ isLogin, onLoginChange }) => {
   // -------------------------------
   // 로그아웃 처리
   // -------------------------------
-  const handleLogout = async () => {
-    try {
-      // ★ 쿠키 의존 엔드포인트는 EB 절대주소로 직접 호출해야 함
-      const res = await axios.delete(`/users/logout`, {
-        headers: { accept: "*/*", Authorization: `Bearer ${cookies.accessToken || ""}` },
-        withCredentials: true,
-        validateStatus: (s) => s < 500,
-      });
-
-      if (res.status >= 400) {
-        console.warn("로그아웃 실패 상태:", res.status);
-      }
-    } catch (e) {
-      console.error("LOGOUT API 요청 실패:", e);
-    } finally {
-      onLoginChange(false);
-      removeCookie("accessToken", { path: "/" });
-      window.location.replace("/");
-    }
-  };
+const handleLogout = () => {
+        axios
+            .delete("/users/logout", {
+                headers: {
+                    accept: "/",
+                    Authorization: Bearer ${cookies.accessToken},
+                },
+            })
+            .then(() => {
+                onLoginChange(false);
+                removeCookie("accessToken", { path: "/" });
+            })
+            .catch((err) => {
+                console.log("LOGOUT API 요청 실패:", err);
+            });
+    };
 
   // -------------------------------
   // 로그인 리다이렉트 (카카오 OAuth)
