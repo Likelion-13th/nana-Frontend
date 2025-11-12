@@ -29,93 +29,93 @@ function AppInner() {
   const [isLogin, setIsLogin] = useState(false);
   const [cookies, setCookie, removeCookie] = useCookies(["accessToken"]);
 
-  // ★ 추가: 쿠키의 accessToken을 Axios Authorization 헤더에 자동 주입/제거
-  useEffect(() => {
-    const t = cookies.accessToken;
-    if (t) {
-      axios.defaults.headers.common["Authorization"] = `Bearer ${t}`;
-    } else {
-      delete axios.defaults.headers.common["Authorization"];
-    }
-  }, [cookies.accessToken]);
+  // // ★ 추가: 쿠키의 accessToken을 Axios Authorization 헤더에 자동 주입/제거
+  // useEffect(() => {
+  //   const t = cookies.accessToken;
+  //   if (t) {
+  //     axios.defaults.headers.common["Authorization"] = `Bearer ${t}`;
+  //   } else {
+  //     delete axios.defaults.headers.common["Authorization"];
+  //   }
+  // }, [cookies.accessToken]);
 
-  // URL/해시에서 accessToken 회수 → 쿠키 저장
-  useEffect(() => {
-    const url = new URL(window.location.href);
-    let token = url.searchParams.get("accessToken");
+  // // URL/해시에서 accessToken 회수 → 쿠키 저장
+  // useEffect(() => {
+  //   const url = new URL(window.location.href);
+  //   let token = url.searchParams.get("accessToken");
 
-    if (!token && window.location.hash) {
-      const hash = window.location.hash;
-      const qIndex = hash.indexOf("accessToken=");
-      if (qIndex >= 0) {
-        const queryPart = hash.slice(hash.indexOf("?") + 1);
-        const params = new URLSearchParams(queryPart);
-        token = params.get("accessToken");
-      }
-    }
+  //   if (!token && window.location.hash) {
+  //     const hash = window.location.hash;
+  //     const qIndex = hash.indexOf("accessToken=");
+  //     if (qIndex >= 0) {
+  //       const queryPart = hash.slice(hash.indexOf("?") + 1);
+  //       const params = new URLSearchParams(queryPart);
+  //       token = params.get("accessToken");
+  //     }
+  //   }
 
-    if (token) {
-      setCookie("accessToken", token, {
-        path: "/",
-        secure: true,
-        sameSite: "None",
-      });
-      url.searchParams.delete("accessToken");
-      window.history.replaceState({}, "", url.pathname + url.search + url.hash);
-      setIsLogin(true);
-    }
-  }, [setCookie]);
+  //   if (token) {
+  //     setCookie("accessToken", token, {
+  //       path: "/",
+  //       secure: true,
+  //       sameSite: "None",
+  //     });
+  //     url.searchParams.delete("accessToken");
+  //     window.history.replaceState({}, "", url.pathname + url.search + url.hash);
+  //     setIsLogin(true);
+  //   }
+  // }, [setCookie]);
 
-  // ★ 추가: URL에 토큰이 없으면 서버에서 발급(/token/generate) 시도 — EB 절대주소로 호출해야 쿠키가 붙음
-  useEffect(() => {
-    (async () => {
-      if (cookies.accessToken) return; // 이미 있으면 스킵
+  // // ★ 추가: URL에 토큰이 없으면 서버에서 발급(/token/generate) 시도 — EB 절대주소로 호출해야 쿠키가 붙음
+  // useEffect(() => {
+  //   (async () => {
+  //     if (cookies.accessToken) return; // 이미 있으면 스킵
 
-      try {
-        const res = await axios.post(
-          `${EB_ORIGIN}/token/generate`,
-          {}, // 스펙상 바디 필요 시 채워 넣기
-          {
-            withCredentials: true,
-            validateStatus: (s) => s < 500,
-          }
-        );
+  //     try {
+  //       const res = await axios.post(
+  //         `${EB_ORIGIN}/token/generate`,
+  //         {}, // 스펙상 바디 필요 시 채워 넣기
+  //         {
+  //           withCredentials: true,
+  //           validateStatus: (s) => s < 500,
+  //         }
+  //       );
 
-        const token =
-          res?.data?.accessToken ||
-          res?.data?.result?.accessToken ||
-          res?.data?.result?.token;
+  //       const token =
+  //         res?.data?.accessToken ||
+  //         res?.data?.result?.accessToken ||
+  //         res?.data?.result?.token;
 
-        if (token) {
-          setCookie("accessToken", token, { path: "/", secure: true, sameSite: "None" });
-          setIsLogin(true);
-        }
-      } catch (e) {
-        // 필요 시 콘솔 확인
-        // console.error("[token/generate] failed:", e);
-      }
-    })();
-  }, [cookies.accessToken, setCookie]);
+  //       if (token) {
+  //         setCookie("accessToken", token, { path: "/", secure: true, sameSite: "None" });
+  //         setIsLogin(true);
+  //       }
+  //     } catch (e) {
+  //       // 필요 시 콘솔 확인
+  //       // console.error("[token/generate] failed:", e);
+  //     }
+  //   })();
+  // }, [cookies.accessToken, setCookie]);
 
-  // 쿠키 기반 로그인 상태 반영
-  useEffect(() => {
-    setIsLogin(!!cookies.accessToken);
-  }, [cookies.accessToken]);
+  // // 쿠키 기반 로그인 상태 반영
+  // useEffect(() => {
+  //   setIsLogin(!!cookies.accessToken);
+  // }, [cookies.accessToken]);
 
-  // 선택: 401 응답 시 로그인 해제
-  useEffect(() => {
-    const id = axios.interceptors.response.use(
-      (res) => {
-        if (res?.status === 401) {
-          setIsLogin(false);
-          // removeCookie("accessToken", { path: "/" });
-        }
-        return res;
-      },
-      (err) => Promise.reject(err)
-    );
-    return () => axios.interceptors.response.eject(id);
-  }, [setIsLogin, removeCookie]);
+  // // 선택: 401 응답 시 로그인 해제
+  // useEffect(() => {
+  //   const id = axios.interceptors.response.use(
+  //     (res) => {
+  //       if (res?.status === 401) {
+  //         setIsLogin(false);
+  //         // removeCookie("accessToken", { path: "/" });
+  //       }
+  //       return res;
+  //     },
+  //     (err) => Promise.reject(err)
+  //   );
+  //   return () => axios.interceptors.response.eject(id);
+  // }, [setIsLogin, removeCookie]);
 
   return (
     <>
