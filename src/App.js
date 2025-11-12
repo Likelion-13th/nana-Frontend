@@ -15,8 +15,7 @@ import Header from "./components/Header";
 import ToolBar from "./components/ToolBar";
 
 // 전역 axios 설정
-axios.defaults.baseURL = "/"; // ← 기존 유지 (다른 API는 프록시/상대경로 사용)
-// ★ 참고: 로그아웃은 ToolBar에서 절대경로(백엔드 HTTPS)로 직접 호출합니다.
+axios.defaults.baseURL = "/";
 axios.defaults.withCredentials = true;
 axios.defaults.validateStatus = (s) => s < 500;
 
@@ -71,24 +70,28 @@ function AppInner() {
   // useEffect(() => {
   //   (async () => {
   //     if (cookies.accessToken) return; // 이미 있으면 스킵
+
   //     try {
   //       const res = await axios.post(
   //         `${EB_ORIGIN}/token/generate`,
-  //         {},
+  //         {}, // 스펙상 바디 필요 시 채워 넣기
   //         {
   //           withCredentials: true,
   //           validateStatus: (s) => s < 500,
   //         }
   //       );
+
   //       const token =
   //         res?.data?.accessToken ||
   //         res?.data?.result?.accessToken ||
   //         res?.data?.result?.token;
+
   //       if (token) {
   //         setCookie("accessToken", token, { path: "/", secure: true, sameSite: "None" });
   //         setIsLogin(true);
   //       }
   //     } catch (e) {
+  //       // 필요 시 콘솔 확인
   //       // console.error("[token/generate] failed:", e);
   //     }
   //   })();

@@ -13,36 +13,31 @@ const ToolBar = ({ isLogin, onLoginChange }) => {
       ? "http://localhost:3000"
       : "https://nana-frontend.netlify.app";
 
-  // ✅ EB(백엔드) 서버 주소 — HTTPS 권장 (SameSite=None 쿠키 전달을 위해)
-  //    valuebid.site 같은 HTTPS 게이트웨이 도메인이 있으면 그걸 사용하세요.
+  // ✅ EB(백엔드) 서버 주소 — HTTPS로 유지해야 SameSite=None 쿠키 전달 가능
   const EB_ORIGIN =
     process.env.NODE_ENV === "development"
       ? "http://localhost:8080"
-      : "https://valuebid.site"; // ← 필요 시 배포 환경 백엔드 HTTPS 도메인으로 교체
+      : "http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com"; // ★ 소문자 정규화
 
   // -------------------------------
   // 로그아웃 처리
   // -------------------------------
-  const handleLogout = async () => {
-    try {
-      await axios.delete(`${EB_ORIGIN}/users/logout`, {
-        headers: {
-          // Accept은 기본값(axios: application/json, text/plain, */*)을 사용하거나 명시적으로 JSON
-          Accept: "application/json",
-          ...(cookies.accessToken
-            ? { Authorization: `Bearer ${cookies.accessToken}` }
-            : {}),
-        },
-        withCredentials: true, // 쿠키 전달
-        validateStatus: (s) => s < 500,
-      });
-
-      onLoginChange(false);
-      removeCookie("accessToken", { path: "/" });
-    } catch (err) {
-      console.log("LOGOUT API 요청 실패:", err);
-    }
-  };
+const handleLogout = () => {
+        axios
+            .delete("/users/logout", {
+                headers: {
+                    accept: "/",
+                    Authorization: `Bearer ${cookies.accessToken}`,
+                },
+            })
+            .then(() => {
+                onLoginChange(false);
+                removeCookie("accessToken", { path: "/" });
+            })
+            .catch((err) => {
+                console.log("LOGOUT API 요청 실패:", err);
+            });
+    };
 
   // -------------------------------
   // 로그인 리다이렉트 (카카오 OAuth)
