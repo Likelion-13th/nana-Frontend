@@ -1,9 +1,9 @@
-/auth/*        http://Sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/auth/:splat        200
-/oauth2/*      http://Sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/oauth2/:splat      200
-/token/*       http://Sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/token/:splat       200
-/users/*       http://Sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/users/:splat       200
-/auctions/*    http://Sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/auctions/:splat    200
-/api/*         http://Sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/api/:splat         200
-/categories/*  http://Sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/categories/:splat  200
+/auth/*        http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/auth/:splat        200
+/oauth2/*      http://sajangajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/oauth2/:splat      200
+/token/*       http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/token/:splat       200
+/users/*       http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/users/:splat       200
+/auctions/*    http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/auctions/:splat    200
+/api/*         http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/api/:splat         200
+/categories/*  http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/categories/:splat  200
 
 /*             /index.html  200
