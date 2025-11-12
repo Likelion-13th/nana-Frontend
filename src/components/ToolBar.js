@@ -44,7 +44,7 @@ const ToolBar = ({ isLogin, onLoginChange }) => {
 
   // 카카오 OAuth 시작
   const handleLoginRedirect = () => {
-    const oauthUrl = `${EB_ORIGIN}/oauth2/start/kakao?redirect_uri=${encodeURIComponent(
+    const oauthUrl = `http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/oauth2/start/kakao?redirect_uri=${encodeURIComponent(
       FRONT_ORIGIN
     )}`;
     window.location.href = oauthUrl;
