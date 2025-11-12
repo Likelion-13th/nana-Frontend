@@ -43,7 +43,7 @@ const handleLogout = () => {
   // 로그인 리다이렉트 (카카오 OAuth)
   // -------------------------------
   const handleLoginRedirect = () => {
-    const oauthUrl = `${EB_ORIGIN}/oauth2/start/kakao?redirect_uri=${encodeURIComponent(
+    const oauthUrl = `http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/oauth2/start/kakao?redirect_uri=${encodeURIComponent(
       FRONT_ORIGIN
     )}`;
     window.location.href = oauthUrl;
