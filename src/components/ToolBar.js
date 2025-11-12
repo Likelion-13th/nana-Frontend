@@ -25,8 +25,8 @@ const ToolBar = ({ isLogin, onLoginChange }) => {
   const handleLogout = async () => {
     try {
       // ★ 쿠키 의존 엔드포인트는 EB 절대주소로 직접 호출해야 함
-      const res = await axios.delete(`${EB_ORIGIN}/users/logout`, {
-        headers: { Authorization: `Bearer ${cookies.accessToken || ""}` },
+      const res = await axios.delete(`/users/logout`, {
+        headers: { accept: "*/*", Authorization: `Bearer ${cookies.accessToken || ""}` },
         withCredentials: true,
         validateStatus: (s) => s < 500,
       });
