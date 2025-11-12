@@ -14,10 +14,10 @@ const ToolBar = ({ isLogin, onLoginChange }) => {
       : "https://nana-frontend.netlify.app";
 
   // ✅ EB(백엔드) 서버 주소 — HTTPS로 유지해야 SameSite=None 쿠키 전달 가능
-  const EB_ORIGIN =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:8080"
-      : "http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com"; // ★ 소문자 정규화
+  // const EB_ORIGIN =
+  //   process.env.NODE_ENV === "development"
+  //     ? "http://localhost:8080"
+  //     : "http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com"; // ★ 소문자 정규화
 
   // -------------------------------
   // 로그아웃 처리
