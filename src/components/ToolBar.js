@@ -17,14 +17,15 @@ const ToolBar = ({ isLogin, onLoginChange }) => {
   const EB_ORIGIN =
     process.env.NODE_ENV === "development"
       ? "http://localhost:8080"
-      : "https://Sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com";
+      : "https://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com"; // ★ 소문자 정규화
 
   // -------------------------------
   // 로그아웃 처리
   // -------------------------------
   const handleLogout = async () => {
     try {
-      const res = await axios.delete("/users/logout", {
+      // ★ 쿠키 의존 엔드포인트는 EB 절대주소로 직접 호출해야 함
+      const res = await axios.delete(`${EB_ORIGIN}/users/logout`, {
         headers: { Authorization: `Bearer ${cookies.accessToken || ""}` },
         withCredentials: true,
         validateStatus: (s) => s < 500,
