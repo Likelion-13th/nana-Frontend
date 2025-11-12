@@ -23,7 +23,7 @@ axios.defaults.validateStatus = (s) => s < 500;
 const EB_ORIGIN =
   process.env.NODE_ENV === "development"
     ? "http://localhost:8080"
-    : "https://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com";
+    : "http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com";
 
 function AppInner() {
   const [isLogin, setIsLogin] = useState(false);

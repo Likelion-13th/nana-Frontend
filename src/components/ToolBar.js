@@ -17,7 +17,7 @@ const ToolBar = ({ isLogin, onLoginChange }) => {
   const EB_ORIGIN =
     process.env.NODE_ENV === "development"
       ? "http://localhost:8080"
-      : "https://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com"; // ★ 소문자 정규화
+      : "http//sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com"; // ★ 소문자 정규화
 
   // -------------------------------
   // 로그아웃 처리
