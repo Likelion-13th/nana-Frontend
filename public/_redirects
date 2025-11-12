@@ -1,2 +1,9 @@
-/api/*  http://sajang-dev.ap-northeast-2.elasticbeanstalk.com/:splat  200
-/*    /index.html   200
+/auth/*        https://Sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/auth/:splat        200
+/oauth2/*      https://Sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/oauth2/:splat      200
+/token/*       https://Sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/token/:splat       200
+/users/*       https://Sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/users/:splat       200
+/auctions/*    https://Sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/auctions/:splat    200
+/api/*         https://Sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/api/:splat         200
+/categories/*  https://Sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/categories/:splat  200
+
+/*             /index.html  200

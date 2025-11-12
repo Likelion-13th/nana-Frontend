@@ -1,3 +1,4 @@
+// src/components/ToolBar.jsx
 import React from "react";
 import "../styles/ToolBar.css";
 import axios from "axios";
@@ -6,24 +7,31 @@ import { useCookies } from "react-cookie";
 const ToolBar = ({ isLogin, onLoginChange }) => {
   const [cookies, , removeCookie] = useCookies(["accessToken"]);
 
+  // ✅ 프론트 배포 주소
+  const FRONT_ORIGIN =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : "https://nana-frontend.netlify.app";
+
+  // ✅ EB(백엔드) 서버 주소 — HTTPS로 유지해야 SameSite=None 쿠키 전달 가능
+  const EB_ORIGIN =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:8080"
+      : "https://Sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com";
+
+  // -------------------------------
+  // 로그아웃 처리
+  // -------------------------------
   const handleLogout = async () => {
     try {
-      // Netlify 프록시 경유
-      const res1 = await axios.delete("/api/users/logout", {
+      const res = await axios.delete("/users/logout", {
         headers: { Authorization: `Bearer ${cookies.accessToken || ""}` },
         withCredentials: true,
         validateStatus: (s) => s < 500,
       });
-      if (res1.status === 403 || res1.status === 405 || res1.status === 404) {
-        await axios.post(
-          "/api/users/logout",
-          {},
-          {
-            headers: { Authorization: `Bearer ${cookies.accessToken || ""}` },
-            withCredentials: true,
-            validateStatus: (s) => s < 500,
-          }
-        );
+
+      if (res.status >= 400) {
+        console.warn("로그아웃 실패 상태:", res.status);
       }
     } catch (e) {
       console.error("LOGOUT API 요청 실패:", e);
@@ -34,31 +42,26 @@ const ToolBar = ({ isLogin, onLoginChange }) => {
     }
   };
 
+  // -------------------------------
+  // 로그인 리다이렉트 (카카오 OAuth)
+  // -------------------------------
   const handleLoginRedirect = () => {
-    // ✅ 로그인 후 돌아올 프론트 주소: nana (고정)
-    const redirectUrl =
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:3000"
-        : "https://nana-frontend.netlify.app";
-
-    // ✅ 절대 EB 주소 사용 (세션 깨짐 방지)
-    const ebBase =
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:8080"
-        : "http://sajang-dev.ap-northeast-2.elasticbeanstalk.com";
-
-    // 강의 기본 엔드포인트 스타일
-    const oauthUrl = `${ebBase}/oauth2/authorization/kakao?redirect_uri=${encodeURIComponent(
-      redirectUrl
+    const oauthUrl = `${EB_ORIGIN}/oauth2/start/kakao?redirect_uri=${encodeURIComponent(
+      FRONT_ORIGIN
     )}`;
-
     window.location.href = oauthUrl;
   };
 
+  // -------------------------------
+  // 스크롤 이동 버튼
+  // -------------------------------
   const MoveToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
   const MoveToBottom = () =>
     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
 
+  // -------------------------------
+  // 렌더링
+  // -------------------------------
   return (
     <div className="toolbar-container">
       <img
