@@ -9,9 +9,9 @@ const ToolBar = ({ isLogin, onLoginChange }) => {
 
   // ✅ 프론트 배포 주소
   const FRONT_ORIGIN =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
-      : "https://nana-frontend.netlify.app";
+    typeof window !== "undefined"
+      ? window.location.origin
+      : "https://nana-frontend.netlify.app"; // SSR 방어용 기본값
 
   // ✅ EB(백엔드) 서버 주소 — HTTPS로 유지해야 SameSite=None 쿠키 전달 가능
   // const EB_ORIGIN =

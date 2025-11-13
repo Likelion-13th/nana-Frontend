@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Banner from './Banner';
 import ProductCard from './ProductCard';
 import PayModal from './../../components/PayModal';
 import '../../styles/ProductPage.css';
+import axios from 'axios';
+import { useCookies } from 'react-cookie';
 
 const Diffuser = () => {
   const products = [
@@ -144,7 +146,7 @@ const Diffuser = () => {
   const itemsPerPage = 5; 
 
   const totalPages = Math.ceil(products.length / itemsPerPage);
-
+  const [cookies] = useCookies(['accessToken']);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentProducts = products.slice(startIndex, endIndex);
@@ -152,6 +154,20 @@ const Diffuser = () => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+    useEffect(() => {
+            axios
+            .get("/categories/2/items", {
+                headers: {
+                    accept: "*/*",
+                    Authorization: `Bearer ${cookies.accessToken}`,
+                },
+            })
+            .then(() => {})
+            .catch((err) => {
+                console.log("LOGOUT API 요청 실패:", err);
+            });
+    },[]);
+
   return (
     <div>
       <Banner title="Diffuser" imagePath="banner_diffuser.jpg" />
