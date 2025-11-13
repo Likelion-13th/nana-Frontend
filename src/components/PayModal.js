@@ -26,7 +26,7 @@ const PayModal = ({ product, onClose }) => {
 
   const handlePayment = async () => {
     try {
-      const response = await axios.post(
+      const response = await.post(
         "/orders",
         {
           itemId: product.id,
