@@ -52,7 +52,7 @@ const Diffuser = () => {
             .catch((err) => {
                 console.log("LOGOUT API 요청 실패:", err);
             });
-    },[]);
+    },[cookies.accessToken]);
 
   return (
     <div>
