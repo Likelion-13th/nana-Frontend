@@ -43,7 +43,6 @@ const Diffuser = () => {
             .get("/categories/2/items", {
                 headers: {
                     accept: "*/*",
-                    Authorization: `Bearer ${cookies.accessToken}`,
                 },
             })
             .then((response) => {
