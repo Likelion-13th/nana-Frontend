@@ -1,16 +1,36 @@
 
 import React, { useState, useEffect } from "react";
 import "../styles/PayModal.css";
+import axios from "axios";
+import { useCookies } from "react-cookie";
 
 const PayModal = ({ product, onClose }) => {
-  // 상태 값이 바뀌면 자동으로 컴포넌트가 다시 렌더링 되도록
+  const [ cookies ] = useCookies(["accessToken"]);
+  const [maxMileage, setMaxMileage] = useState(0);
+
+  useEffect(() => {
+            axios
+            .get("/users/milage", {
+                headers: {
+                    accept: "*/*",
+                    Authorization: `Bearer ${cookies.accessToken}`,
+                },
+            })
+            .then((response) => {
+              setMaxMileage(response.data.result.maxMilate);
+            })
+            .catch((err) => {
+                console.log("LOGOUT API 요청 실패:", err);
+            });
+  },[cookies.accessToken]);
+
   
 	// 주문할 상품 개수 (기본값 1개)
   const [quantity, setQuantity] = useState(1);
   // 사용자가 입력한 마일리지 금액
   const [mileageToUse, setMileageToUse] = useState("");
   // 최대 사용 가능 마일리지
-  const maxMileage = 100000;
+  // const maxMileage = 100000;
   // 상품 가격
   const [, setProductPrice] = useState(product.price);
   // 총 결제 금액
