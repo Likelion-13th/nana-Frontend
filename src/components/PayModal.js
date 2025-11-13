@@ -10,14 +10,14 @@ const PayModal = ({ product, onClose }) => {
 
   useEffect(() => {
             axios
-            .get("/users/milage", {
+            .get("/users/mileage", {
                 headers: {
                     accept: "*/*",
                     Authorization: `Bearer ${cookies.accessToken}`,
                 },
             })
             .then((response) => {
-              setMaxMileage(response.data.result.maxMilate);
+              setMaxMileage(response.data.result.maxMileage);
             })
             .catch((err) => {
                 console.log("LOGOUT API 요청 실패:", err);
