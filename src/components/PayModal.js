@@ -10,7 +10,7 @@ const PayModal = ({ product, onClose }) => {
 
   useEffect(() => {
             axios
-            .get("/orders", {
+            .get("/users/mileage", {
                 headers: {
                     accept: "*/*",
                     Authorization: `Bearer ${cookies.accessToken}`,
