@@ -24,6 +24,35 @@ const PayModal = ({ product, onClose }) => {
             });
   },[cookies.accessToken]);
 
+  const handlePayment = async () => {
+    try {
+      const response = await axios.post("/orders",
+      {
+        itemId: product.id,
+        quantity: quantity,
+        mileageToUse: mileageToUse,
+      },
+      {
+        headers: {
+          "Content-Type": "applicatione/json",
+          Authorization: `Bearer ${cookies.accessToen}`,
+        },
+      }
+    );
+    
+      if (response.data.isSuccess) {
+        alert("주문이 성공적으로 생성되었습니다.");
+        onClose();
+      } else{
+        alert(`주문 실패: ${response.data.message}`);
+      }
+    }catch (error){
+      console.error("결젱오류".error);
+      alert("결제 처리 중 오류가 발생했습니다.")
+    }
+  }
+
+
   
 	// 주문할 상품 개수 (기본값 1개)
   const [quantity, setQuantity] = useState(1);
@@ -155,7 +184,7 @@ const PayModal = ({ product, onClose }) => {
         </div>
         
 				{/* 결제 버튼 */}
-        <button className="pay-button">결제하기</button>
+        <button className="pay-button" onClick={handlePayment}>결제하기</button>
       </div>
     </div>
   );
