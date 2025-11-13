@@ -35,7 +35,7 @@ const PayModal = ({ product, onClose }) => {
       {
         headers: {
           "Content-Type": "applicatione/json",
-          Authorization: `Bearer ${cookies.accessToen}`,
+          Authorization: `Bearer ${cookies.accessToken}`,
         },
       }
     );
