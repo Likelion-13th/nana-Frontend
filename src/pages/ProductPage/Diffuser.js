@@ -40,7 +40,7 @@ const Diffuser = () => {
   };
     useEffect(() => {
             axios
-            .get("/categories/2/items", {
+            .get("/categories/1/items", {
                 headers: {
                     accept: "*/*",
                 },
