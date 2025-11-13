@@ -1,140 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Banner from './Banner';
 import ProductCard from './ProductCard';
 import PayModal from './../../components/PayModal';
 import '../../styles/ProductPage.css';
+import axios from 'axios';
+import { useCookies } from 'react-cookie';
 
 const New = () => {
-  const products = [
-    {
-      id: 1,
-      name: "신상 퍼퓸 A",
-      brand: "브랜드A",
-      price: 25000,
-      imagePath: "img/perfume_1.png",
-      isNew: true,
-    },
-    {
-      id: 2,
-      name: "신상 퍼퓸 B",
-      brand: "브랜드B",
-      price: 26000,
-      imagePath: "img/perfume_2.png",
-      isNew: true,
-    },
-    {
-      id: 3,
-      name: "신상 디퓨저 C",
-      brand: "브랜드C",
-      price: 18000,
-      imagePath: "img/diffuser_1.png",
-      isNew: true,
-    },
-    {
-      id: 4,
-      name: "신상 디퓨저 D",
-      brand: "브랜드D",
-      price: 19000,
-      imagePath: "img/diffuser_2.png",
-      isNew: true,
-    },
-    {
-      id: 5,
-      name: "신상 향수 E",
-      brand: "브랜드E",
-      price: 21000,
-      imagePath: "img/perfume_3.png",
-      isNew: true,
-    },
-    {
-      id: 6,
-      name: "신상 향수 F",
-      brand: "브랜드F",
-      price: 26000,
-      imagePath: "img/perfume_4.png",
-      isNew: true,
-    },
-    {
-      id: 7,
-      name: "신상 향수 G",
-      brand: "브랜드G",
-      price: 11000,
-      imagePath: "img/diffuser_5.png",
-      isNew: true,
-    },
-    {
-      id: 8,
-      name: "신상 향수 H",
-      brand: "브랜드H",
-      price: 41000,
-      imagePath: "img/diffuser_6.png",
-      isNew: true,
-    },
-    {
-      id: 9,
-      name: "신상 향수 I",
-      brand: "브랜드i",
-      price: 22000,
-      imagePath: "img/perfume_6.png",
-      isNew: true,
-    },
-    {
-      id: 10,
-      name: "신상 향수 J",
-      brand: "브랜드J",
-      price: 11000,
-      imagePath: "img/perfume_7.png",
-      isNew: true,
-    },
-    {
-      id: 11,
-      name: "신상 향수 K",
-      brand: "브랜드K",
-      price: 29000,
-      imagePath: "img/diffuser_7.png",
-      isNew: true,
-    },
-    {
-      id: 12,
-      name: "신상 향수 L",
-      brand: "브랜드L",
-      price: 21000,
-      imagePath: "img/perfume_5.png",
-      isNew: true,
-    },
-    {
-      id: 13,
-      name: "신상 향수 M",
-      brand: "브랜드M",
-      price: 28000,
-      imagePath: "img/diffuser_8.png",
-      isNew: true,
-    },
-    {
-      id: 14,
-      name: "신상 향수 N",
-      brand: "브랜드N",
-      price: 22000,
-      imagePath: "img/diffuser_9.png",
-      isNew: true,
-    },
-    {
-      id: 15,
-      name: "신상 향수 O",
-      brand: "브랜드O",
-      price: 31000,
-      imagePath: "img/perfume_8.png",
-      isNew: true,
-    }
+  const [products, SetProducts] = useState([]);
 
-  ];
 
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleCardClick = (product) => {
-    setSelectedProduct(product);
-    setIsModalOpen(true);
+      setSelectedProduct(product);
+      if(typeof cookies.accessToken !== "string") {
+      alert("로그인이 필요합니다");
+      return;
+      }
+      setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
@@ -145,6 +30,7 @@ const New = () => {
   const itemsPerPage = 5; 
 
   const totalPages = Math.ceil(products.length / itemsPerPage);
+  const [cookies] = useCookies(['accessToken']);
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -153,6 +39,22 @@ const New = () => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+    useEffect(() => {
+            axios
+            .get("/categories/1/items", {
+                headers: {
+                    accept: "*/*",
+                },
+            })
+            .then((response) => {
+              SetProducts(response.data.result);
+            })
+            .catch((err) => {
+                console.log("LOGOUT API 요청 실패:", err);
+            });
+    },[cookies.accessToken]);
+
   return (
     <div>
       <Banner title="New" imagePath="banner_main.jpg" />

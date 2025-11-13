@@ -42,7 +42,7 @@ const Perfume = () => {
 
     useEffect(() => {
             axios
-            .get("/categories/2/items", {
+            .get("/categories/3/items", {
                 headers: {
                     accept: "*/*",
                 },
