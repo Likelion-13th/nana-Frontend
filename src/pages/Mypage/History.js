@@ -1,10 +1,8 @@
 import React from "react";
 import "../../styles/Mypage.css";
 
-const History = () => {
-  const handleCancel = () => {
-    alert("취소");
-  };
+const History = ({ historyData, onCancel}) => {
+
 
   return (
     <div className="history-container-wrap">

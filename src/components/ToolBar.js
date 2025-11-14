@@ -27,7 +27,7 @@ const ToolBar = ({ isLogin, onLoginChange }) => {
 
     // ★ 친구 코드 패턴 그대로: EB는 http 로 호출
     const oauthUrl =
-      "http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/oauth2/start/kakao" +
+      "https://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/oauth2/start/kakao" +
       `?redirect_uri=${encodeURIComponent(redirect_url)}`;
 
     window.location.href = oauthUrl;
