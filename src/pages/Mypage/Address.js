@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Address = () => {
+const Address = ({ handleSave }) => {
 	
 	// 🚩useState
   const [zipcode, setZipcode] = useState("");
@@ -10,10 +10,7 @@ const Address = () => {
   // 🚩onChange
   const handleAddressDetailChange = (e) => setAddressDetail(e.target.value);
 	
-	// 🚩onClick
-	const handleSave = () => {
-		alert("저장");
-	}
+
 	
 	// 🚩openAPI
 	const handleSearchPostcode = () => {
@@ -59,7 +56,7 @@ const Address = () => {
                 </div>
                 <div 
 		                className="address-button"
-					          onClick={handleSave}
+					          onClick={() => handleSave(zipcode, address, addressDetail)}
 		            >
                     저장하기
                 </div>
