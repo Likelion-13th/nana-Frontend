@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import "../../styles/Mypage.css";
 import Profile from "./Profile";
 import Status from "./Status";
