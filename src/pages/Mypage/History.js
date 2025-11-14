@@ -1,8 +1,10 @@
 import React from "react";
 import "../../styles/Mypage.css";
 
-const History = ({ historyData, onCancel}) => {
-
+const History = () => {
+    const onCancel = () => {
+    alert("취소");
+  };
 
   return (
     <div className="history-container-wrap">
@@ -23,17 +25,7 @@ const History = ({ historyData, onCancel}) => {
             {[1, 2, 3].map((_, index) => (
               <tr key={index}>
                 <td>2025-01-01</td>
-                <td className="history-product">
-                  <img
-                    src={`${process.env.PUBLIC_URL}/img/banner_background_2.jpg`}
-                    alt="제품 이미지"
-                    className="history-product-image"
-                  />
-                  <div className="product-info">
-                    <div className="product-name">엑스 베티버 오 드 퍼퓸</div>
-                    <div className="product-desc">중성의 깊고 어두운</div>
-                  </div>
-                </td>
+                <td className="history-product">엑스 베티버 오 드 퍼퓸</td>
                 <td>1</td>
                 <td>135,000원</td>
                 <td>{index === 0 ? "배송중" : index === 1 ? "주문취소" : "배송완료"}</td>
@@ -41,7 +33,7 @@ const History = ({ historyData, onCancel}) => {
                   <div className="history-cancel">
                     <div
                       className="history-cancel-button"
-                      onClick={handleCancel}
+                      onClick={onCancel}
                     >
                       취소
                     </div>
