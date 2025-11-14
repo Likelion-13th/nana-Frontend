@@ -19,19 +19,24 @@ const ToolBar = ({ isLogin, onLoginChange }) => {
   // 로그인 리다이렉트 (카카오 OAuth)
   // -------------------------------
   const handleLoginRedirect = () => {
-    // 개발/배포에 따라 돌아올 프론트 주소 분기
-    const redirect_url =
-      process.env.NODE_ENV === "development"
-        ? "http://localhost:3000"
-        : "https://nana-frontend.netlify.app";
-
-    // ★ 친구 코드 패턴 그대로: EB는 http 로 호출
     const oauthUrl =
-      "http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/oauth2/start/kakao" +
-      `?redirect_uri=${encodeURIComponent(redirect_url)}`;
+      "http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/oauth2/start/kakao";
 
     window.location.href = oauthUrl;
   };
+  //   // 개발/배포에 따라 돌아올 프론트 주소 분기
+  //   const redirect_url =
+  //     process.env.NODE_ENV === "development"
+  //       ? "http://localhost:3000"
+  //       : "https://nana-frontend.netlify.app";
+
+  //   // ★ 친구 코드 패턴 그대로: EB는 http 로 호출
+  //   const oauthUrl =
+  //     "http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/oauth2/start/kakao" +
+  //     `?redirect_uri=${encodeURIComponent(redirect_url)}`;
+
+  //   window.location.href = oauthUrl;
+  // };
 
   // -------------------------------
   // 로그아웃 처리
