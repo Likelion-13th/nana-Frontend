@@ -5,6 +5,8 @@
 /auctions/*    http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/auctions/:splat    200
 /api/*         http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/api/:splat         200
 /categories/*  http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/categories/:splat  200
-/orders*       http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/orders/:splat      200
+/orders        http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/orders             200
+/orders/*      http://sajang-dev-env.eba-cxzcfs22.ap-northeast-2.elasticbeanstalk.com/orders/:splat      200
+
 
 /*             /index.html  200
