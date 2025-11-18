@@ -1,9 +1,40 @@
+// src/pages/Mypage/History.jsx
 import React from "react";
 import "../../styles/Mypage.css";
 
-const History = () => {
-    const onCancel = () => {
-    alert("취소");
+const History = ({ historyData = [], onCancel }) => {
+  const formatCurrency = (amount) => {
+    const safe = amount ?? 0;
+    return new Intl.NumberFormat("ko-KR").format(safe);
+  };
+
+  const formatDate = (isoString) => {
+    if (!isoString) return "-";
+    const date = new Date(isoString);
+    if (Number.isNaN(date.getTime())) return "-";
+    return date.toLocaleDateString("ko-KR");
+  };
+
+  const renderStatus = (status) => {
+    switch (status) {
+      case "PROCESSING":
+        return "배송중";
+      case "COMPLETE":
+        return "배송완료";
+      case "CANCEL":
+        return "주문취소";
+      default:
+        return status || "-";
+    }
+  };
+
+  const handleCancelClick = (orderId, status) => {
+    if (!onCancel) return;
+    if (status !== "PROCESSING") {
+      alert("배송중인 주문만 취소할 수 있습니다.");
+      return;
+    }
+    onCancel(orderId);
   };
 
   return (
@@ -22,25 +53,42 @@ const History = () => {
             </tr>
           </thead>
           <tbody>
-            {[1, 2, 3].map((_, index) => (
-              <tr key={index}>
-                <td>2025-01-01</td>
-                <td className="history-product">엑스 베티버 오 드 퍼퓸</td>
-                <td>1</td>
-                <td>135,000원</td>
-                <td>{index === 0 ? "배송중" : index === 1 ? "주문취소" : "배송완료"}</td>
-                <td>
-                  <div className="history-cancel">
-                    <div
-                      className="history-cancel-button"
-                      onClick={onCancel}
-                    >
-                      취소
-                    </div>
-                  </div>
+            {historyData.length === 0 ? (
+              <tr>
+                <td colSpan={6} style={{ textAlign: "center" }}>
+                  주문 내역이 없습니다.
                 </td>
               </tr>
-            ))}
+            ) : (
+              historyData.map((order) => (
+                <tr key={order.orderId}>
+                  <td>{formatDate(order.createdAt)}</td>
+
+                  {/* ✅ 여기: 불필요한 div 빼고 텍스트만 */}
+                  <td className="history-product-cell">{order.itemName}</td>
+
+                  <td>{order.quantity}</td>
+                  <td>{formatCurrency(order.finalPrice)}원</td>
+                  <td>{renderStatus(order.status)}</td>
+                  <td>
+                    <div className="history-cancel">
+                      {order.status === "PROCESSING" ? (
+                        <div
+                          className="history-cancel-button"
+                          onClick={() =>
+                            handleCancelClick(order.orderId, order.status)
+                          }
+                        >
+                          취소
+                        </div>
+                      ) : (
+                        <span>-</span>
+                      )}
+                    </div>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>

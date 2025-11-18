@@ -136,14 +136,14 @@
   }
   
   .history-product {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    justify-content: start;
-    padding: 0; 
-    margin: 0;  
-    box-sizing: border-box;
+      display: block;          /* flex 말고 일반 블록 */
+      text-align: left;        /* 상품명은 왼쪽 정렬 */
+      padding: 0 10px;         /* 양옆 여백만 살짝 */
+      margin: 0;
+      line-height: 1.4;
+      box-sizing: border-box;
   }
+
   
  
   .history-product-image {
@@ -233,4 +233,7 @@
     font-size: 1.4rem;
     font-weight: 500;
   }
-  
+  .history-product-cell {
+  text-align: left;      /* 상품명 왼쪽 정렬 */
+  padding-left: 16px;    /* 살짝 여백만 */
+}
